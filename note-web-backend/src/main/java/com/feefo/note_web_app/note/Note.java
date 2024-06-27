@@ -1,4 +1,4 @@
-package com.feefo.note_web_app.controller.note;
+package com.feefo.note_web_app.note;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
