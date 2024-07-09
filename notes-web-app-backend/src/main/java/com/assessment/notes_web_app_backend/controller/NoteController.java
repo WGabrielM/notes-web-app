@@ -48,7 +48,7 @@ public class NoteController {
 
     @Transactional
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteNote(@PathVariable Long id) {
+    public ResponseEntity deleteNote(@PathVariable Long id) {
         noteRepository.deleteById(id);
         return ResponseEntity.noContent().build();
     }
