@@ -6,11 +6,11 @@ import com.assessment.notes_web_app_backend.note.NoteRepository;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
@@ -29,5 +29,11 @@ public class NoteController {
         var uri = uriBuilder.path("/notes/{id}").buildAndExpand(note.getId()).toUri();
 
         return ResponseEntity.created(uri).body(new DataRegisterNote(note));
+    }
+
+    @GetMapping
+    public ResponseEntity<Page<DataRegisterNote>> listNotes(@PageableDefault() Pageable pagination) {
+        var list = noteRepository.findAll(pagination).map(DataRegisterNote::new);
+        return ResponseEntity.ok(list);
     }
 }
