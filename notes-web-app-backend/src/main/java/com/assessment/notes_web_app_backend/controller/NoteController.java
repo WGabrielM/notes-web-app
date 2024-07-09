@@ -1,6 +1,7 @@
 package com.assessment.notes_web_app_backend.controller;
 
 import com.assessment.notes_web_app_backend.note.DataRegisterNote;
+import com.assessment.notes_web_app_backend.note.DataUpdateNote;
 import com.assessment.notes_web_app_backend.note.Note;
 import com.assessment.notes_web_app_backend.note.NoteRepository;
 import jakarta.transaction.Transactional;
@@ -35,5 +36,20 @@ public class NoteController {
     public ResponseEntity<Page<DataRegisterNote>> listNotes(@PageableDefault() Pageable pagination) {
         var list = noteRepository.findAll(pagination).map(DataRegisterNote::new);
         return ResponseEntity.ok(list);
+    }
+
+    @PutMapping
+    @Transactional
+    public ResponseEntity updateNote(@RequestBody @Valid DataUpdateNote data){
+        var note = noteRepository.getReferenceById(data.id());
+        note.updateInformation(data);
+        return ResponseEntity.ok(new DataRegisterNote(note));
+    }
+
+    @Transactional
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteNote(@PathVariable Long id) {
+        noteRepository.deleteById(id);
+        return ResponseEntity.noContent().build();
     }
 }

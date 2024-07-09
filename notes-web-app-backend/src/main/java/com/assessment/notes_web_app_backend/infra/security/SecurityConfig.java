@@ -14,11 +14,11 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .csrf(csrf -> csrf.disable()) // Desabilita o CSRF para simplificação, não recomendado para produção
-                .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/notes").permitAll() // Permite acesso público ao endpoint /notes
-                        .anyRequest().authenticated() // Requer autenticação para qualquer outro endpoint
-                );
+                .csrf(csrf -> csrf.disable())
+                .authorizeHttpRequests(req -> {
+                    req.requestMatchers("/notes").permitAll();
+                    req.anyRequest().authenticated();
+                });
         return http.build();
     }
 }

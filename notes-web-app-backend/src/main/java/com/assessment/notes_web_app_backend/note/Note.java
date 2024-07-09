@@ -22,4 +22,10 @@ public class Note {
     public Note(DataRegisterNote data) {
         this.text = data.text();
     }
+
+    public void updateInformation(DataUpdateNote data) {
+        if(data.text() != null) {
+            this.text = data.text();
+        }
+    }
 }
