@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import { Email, Header, HomeContainer, SupportContact } from "./styles";
+import { AddNote, Email, FormField, Header, HomeContainer, SaveButton, SupportContact, TextArea } from "./styles";
 
 import "./app.css";
 
@@ -38,12 +38,12 @@ function App() {
         </div>
       </div>
 
-      <article>
-        <form>
-          <textarea name="task" placeholder="Add a new note" required />
-          <button type="submit">Save</button>
-        </form>
-      </article>
+      <AddNote>
+        <FormField>
+          <TextArea name="note" placeholder="Add a new note" required />
+          <SaveButton type="submit">Save</SaveButton>
+        </FormField>
+      </AddNote>
     </HomeContainer>
   );
 }
