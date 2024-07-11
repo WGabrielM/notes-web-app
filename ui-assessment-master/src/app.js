@@ -1,6 +1,14 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
-import { AddNote, Email, FormField, Header, HomeContainer, SaveButton, SupportContact, TextArea } from "./styles";
+import {
+  AddNote,
+  Email,
+  FormField,
+  Header,
+  HomeContainer,
+  SaveButton,
+  SupportContact,
+  SupportInfo,
+  TextArea,
+} from "./styles";
 
 import "./app.css";
 
@@ -9,17 +17,17 @@ function App() {
     <HomeContainer>
       <Header>
         <h1>Account Overview</h1>
-        <SupportContact>
+        <SupportInfo>
           <span>your feefo support contact</span>
-          <div>
-            <FontAwesomeIcon icon="fa-solid fa-envelope" />
+          <SupportContact>
+            <img src="/src/assets/images/support-img.png" alt="" />
             <Email>
-              <span>Support</span>
+              <strong>Support</strong>
               <p>support@feefo.com</p>
             </Email>
             <p>020 3362 4208</p>
-          </div>
-        </SupportContact>
+          </SupportContact>
+        </SupportInfo>
       </Header>
       <div>
         <div>
