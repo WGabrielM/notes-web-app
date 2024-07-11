@@ -18,6 +18,7 @@ import {
 } from "./styles";
 
 import "./app.css";
+import Note from "./components/Note";
 
 function App() {
   return (
@@ -64,6 +65,9 @@ function App() {
           <SaveButton type="submit">Save</SaveButton>
         </FormField>
       </AddNote>
+
+      <Note text="Test text note here " />
+
     </HomeContainer>
   );
 }

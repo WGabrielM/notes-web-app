@@ -55,8 +55,12 @@ export const Email = styled.div`
 `;
 
 export const InfoPanel = styled.div`
-  padding: 1rem;
   background-color: white;
+
+  padding: 1rem;
+  margin: 0 auto;
+
+  width: 922px;
 `;
 
 export const Sales = styled.div`
@@ -72,17 +76,13 @@ export const Sales = styled.div`
   }
 `;
 
-export const NotesData = styled.div`
+export const NotesData = styled.article`
   display: flex;
   align-items: center;
   justify-content: space-evenly;
 `;
 
-export const NotesUploads = styled.div`
-  
-
- 
-`;
+export const NotesUploads = styled.div``;
 
 export const PercentualData = styled.div`
   display: block;
@@ -101,7 +101,7 @@ export const AddNote = styled.article`
   align-items: center;
   flex-direction: column;
 
-  margin: 5rem auto 0;
+  margin: 5rem auto 5rem;
 
   width: 736px;
 `;
@@ -121,8 +121,7 @@ export const TextArea = styled.textarea`
   padding: 1rem;
   line-height: 1.4;
   border-radius: 5px;
-  color: var(--gray-300);
-  background-color: var(--gray-500);
+  background-color: white;
 
   height: 100%;
   width: 85%;
@@ -135,9 +134,9 @@ export const SaveButton = styled.button`
   font-weight: bold;
   margin-left: 1rem;
   border-radius: 8px;
-  color: var(--gray-100);
+  color: #F2F2F2;
   transition: background-color 0.1s;
-  background-color: var(--blue-dark);
+  background-color: #4EA8DE;
 
   height: 100%;
   width: 13%;
