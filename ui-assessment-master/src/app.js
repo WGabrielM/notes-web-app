@@ -1,10 +1,17 @@
 import {
   AddNote,
+  DataNotes,
   Email,
   FormField,
   Header,
   HomeContainer,
+  InfoPanel,
+  NotesData,
+  NotesUploads,
+  PercentualData,
+  Sales,
   SaveButton,
+  SavedProcess,
   SupportContact,
   SupportInfo,
   TextArea,
@@ -29,22 +36,27 @@ function App() {
           </SupportContact>
         </SupportInfo>
       </Header>
-      <div>
-        <div>
+
+      <InfoPanel>
+        <Sales>
           <strong>Sales</strong>
+          <p>
+            You had <strong>0 uploads</strong> and <strong>0 lines</strong>{" "}
+            added.
+          </p>
+        </Sales>
 
-          <p>You had 0 uploads and 0 lines added.</p>
-        </div>
-
-        <div>
-          <strong></strong>
-          <span>upload success</span>
-        </div>
-        <div>
-          <strong></strong>
-          <span>lines saved</span>
-        </div>
-      </div>
+        <NotesData>
+          <NotesUploads>
+            <PercentualData>0%</PercentualData>
+            <SavedProcess>upload success</SavedProcess>
+          </NotesUploads>
+          <NotesUploads>
+            <PercentualData>0%</PercentualData>
+            <SavedProcess>lines saved</SavedProcess>
+          </NotesUploads>
+        </NotesData>
+      </InfoPanel>
 
       <AddNote>
         <FormField>
