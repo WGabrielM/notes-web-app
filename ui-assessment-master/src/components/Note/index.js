@@ -1,12 +1,22 @@
-import React from 'react'
-import { Board, DeleteButton, Text, UpdateButton } from './styles'
+import React from 'react';
 
-export default function Note({text}) {
+import { useNoteDataDelete } from '../../hooks/useNoteDataDelete';
+
+import { Board, DeleteButton, Text, UpdateButton } from './styles';
+
+export default function Note({ id, text }) {
+  const {deleteNote} = useNoteDataDelete(); 
+
+  const handleDelete = () => {
+    deleteNote(id); 
+  };
+
+  const handleUpdate = () => {};
+
   return (
     <Board>
-        <Text>{text}</Text>
-        <UpdateButton>Update</UpdateButton>
-        <DeleteButton>Delete</DeleteButton>
+      <Text>{text}</Text>
+      <DeleteButton onClick={handleDelete}>Delete</DeleteButton>
     </Board>
-  )
+  );
 }

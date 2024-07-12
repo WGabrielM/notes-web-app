@@ -1,23 +1,27 @@
 import axios from "axios";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-const API_URL = 'http://localhost:8080';
+const API_URL = "http://localhost:8080";
 
-export function useDeleteNote() {
-    const queryClient = useQueryClient();
+const deleteData = async (id) => {
+  const response = await axios.delete(`${API_URL}/notes/${id}`);
+  return response.data;
+};
 
-    const deleteNote = async (id) => {
-        await axios.delete(`${API_URL}/notes/${id}`);
-    };
+export function useNoteDataDelete() {
+  const queryClient = useQueryClient();
 
-    const mutation = useMutation(
-        (id) => deleteNote(id),
-        {
-            onSuccess: () => {
-                queryClient.invalidateQueries('notes-data'); 
-            }
-        }
-    );
+  const deleteNote = async (id) => {
+    await deleteData(id);
+    queryClient.invalidateQueries(["notes-data"]);
+  };
 
-    return mutation;
+  const { mutate } = useMutation(deleteNote, {
+    retry: 2,
+  });
+
+  return {
+    deleteNote,
+    mutate,
+  };
 }

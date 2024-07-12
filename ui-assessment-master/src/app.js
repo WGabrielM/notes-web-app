@@ -23,8 +23,6 @@ import {
   TextArea,
 } from "./styles";
 
-
-
 function App() {
   const { data } = useNoteData();
   const { mutate } = useNoteDataMutate();
@@ -41,7 +39,7 @@ function App() {
   function handleSubmit(event) {
     event.preventDefault();
     mutate({ text: noteText });
-    setNoteText(""); // Clear the text area after submission
+    setNoteText(""); 
   }
 
   return (
@@ -97,9 +95,10 @@ function App() {
         </FormField>
       </AddNote>
 
-
       {Array.isArray(data) &&
-        data.map((noteData) => <Note key={noteData.id} text={noteData.text} />)}
+        data.map((noteData) => (
+          <Note key={noteData.id} id={noteData.id} text={noteData.text} />
+        ))}
     </HomeContainer>
   );
 }

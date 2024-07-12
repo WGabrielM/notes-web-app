@@ -14,24 +14,8 @@ export const Board = styled.div`
 `;
 
 export const Text = styled.p`
-  flex-grow: 8;
+  flex-grow: 9;
   width: 12rem;
-`;
-
-export const UpdateButton = styled.button`
-  border: 0;
-  flex-grow: 1;
-  color: white;
-  cursor: pointer;
-  font-size: 14px;
-  font-weight: bold;
-  margin-left: 1rem;
-  border-radius: 8px;
-  transition: background-color 0.1s;
-  background-color: orange;
-
-  width: 3rem;
-  height: 3rem;
 `;
 
 export const DeleteButton = styled.button`
