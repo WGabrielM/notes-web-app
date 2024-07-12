@@ -44,7 +44,6 @@ public class NoteController {
         return ResponseEntity.ok(notes);
     }
 
-
     @PutMapping
     @Transactional
     public ResponseEntity updateNote(@RequestBody @Valid DataUpdateNote data){
