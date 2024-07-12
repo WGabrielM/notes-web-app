@@ -7,7 +7,7 @@ export const Board = styled.div`
   border-radius: 8px;
   background-color: white;
 
-  margin: 0 auto 15px;
+  margin: 0 auto 1.5rem;
   padding: 1.5rem;
 
   width: 736px;

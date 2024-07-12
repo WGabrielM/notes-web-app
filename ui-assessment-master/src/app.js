@@ -19,8 +19,15 @@ import {
 
 import "./app.css";
 import Note from "./components/Note";
+import { useNoteData } from "./hooks/useNoteData";
 
 function App() {
+  const { data } = useNoteData();
+
+  function handleNewCommentInvalid(event) {
+    event.target.setCustomValidity("This field is required");
+  }
+
   return (
     <HomeContainer>
       <Header>
@@ -61,13 +68,19 @@ function App() {
 
       <AddNote>
         <FormField>
-          <TextArea name="note" placeholder="Add a new note" required />
+          <TextArea
+            name="note"
+            title="Field to add a note"
+            placeholder="Add a new note here"
+            onInvalid={handleNewCommentInvalid}
+            required
+          />
           <SaveButton type="submit">Save</SaveButton>
         </FormField>
       </AddNote>
 
-      <Note text="Test text note here " />
-
+      {Array.isArray(data) &&
+        data.map((noteData) => <Note key={noteData.id} text={noteData.text} />)}
     </HomeContainer>
   );
 }

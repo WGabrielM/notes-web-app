@@ -14,8 +14,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @RestController
 @RequestMapping("notes")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class NoteController {
 
     @Autowired
@@ -33,10 +37,13 @@ public class NoteController {
     }
 
     @GetMapping
-    public ResponseEntity<Page<DataRegisterNote>> listNotes(@PageableDefault() Pageable pagination) {
-        var list = noteRepository.findAll(pagination).map(DataRegisterNote::new);
-        return ResponseEntity.ok(list);
+    public ResponseEntity<List<DataRegisterNote>> listNotes() {
+        var notes = noteRepository.findAll().stream()
+                .map(DataRegisterNote::new)
+                .collect(Collectors.toList());
+        return ResponseEntity.ok(notes);
     }
+
 
     @PutMapping
     @Transactional
