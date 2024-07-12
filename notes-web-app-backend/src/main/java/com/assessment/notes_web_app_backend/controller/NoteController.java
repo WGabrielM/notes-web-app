@@ -17,6 +17,9 @@ import org.springframework.web.util.UriComponentsBuilder;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Controller for managing notes.
+ */
 @RestController
 @RequestMapping("notes")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
@@ -25,10 +28,17 @@ public class NoteController {
     @Autowired
     private NoteRepository noteRepository;
 
+    /**
+     * Registers a new note.
+     *
+     * @param dataRegisterNote the note data to be registered
+     * @param uriBuilder the URI builder
+     * @return the response entity containing the created note
+     */
     @PostMapping
     @Transactional
-    public ResponseEntity registerNote(@RequestBody @Valid DataRegisterNote data, UriComponentsBuilder uriBuilder) {
-        var note = new Note(data);
+    public ResponseEntity registerNote(@RequestBody @Valid DataRegisterNote dataRegisterNote, UriComponentsBuilder uriBuilder) {
+        var note = new Note(dataRegisterNote);
         noteRepository.save(note);
 
         var uri = uriBuilder.path("/notes/{id}").buildAndExpand(note.getId()).toUri();
@@ -36,6 +46,11 @@ public class NoteController {
         return ResponseEntity.created(uri).body(new DataRegisterNote(note));
     }
 
+    /**
+     * Lists all notes.
+     *
+     * @return the response entity containing the list of notes
+     */
     @GetMapping
     public ResponseEntity<List<DataRegisterNote>> listNotes() {
         var notes = noteRepository.findAll().stream()
@@ -44,14 +59,26 @@ public class NoteController {
         return ResponseEntity.ok(notes);
     }
 
+    /**
+     * Updates a note.
+     *
+     * @param dataUpdateNote the note data to be updated
+     * @return the response entity containing the updated note
+     */
     @PutMapping
     @Transactional
-    public ResponseEntity updateNote(@RequestBody @Valid DataUpdateNote data){
-        var note = noteRepository.getReferenceById(data.id());
-        note.updateInformation(data);
+    public ResponseEntity updateNote(@RequestBody @Valid DataUpdateNote dataUpdateNote){
+        var note = noteRepository.getReferenceById(dataUpdateNote.id());
+        note.updateInformation(dataUpdateNote);
         return ResponseEntity.ok(new DataRegisterNote(note));
     }
 
+    /**
+     * Deletes a note.
+     *
+     * @param id the ID of the note to be deleted
+     * @return the response entity
+     */
     @Transactional
     @DeleteMapping("/{id}")
     public ResponseEntity deleteNote(@PathVariable Long id) {
