@@ -2,7 +2,7 @@ import React from 'react';
 
 import { useNoteDataDelete } from '../../hooks/useNoteDataDelete';
 
-import { Board, DeleteButton, Text, UpdateButton } from './styles';
+import { Board, DeleteButton, Text } from './styles';
 
 export default function Note({ id, text }) {
   const {deleteNote} = useNoteDataDelete(); 
@@ -10,8 +10,6 @@ export default function Note({ id, text }) {
   const handleDelete = () => {
     deleteNote(id); 
   };
-
-  const handleUpdate = () => {};
 
   return (
     <Board>
